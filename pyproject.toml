@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "st-paywall"
+version = "0.1.6"
+description = "A Python package for creating subscription Streamlit apps"
+authors = [
+    {name = "Tyler Richards", email = "tylerjrichards@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "stripe",
+    "httpx-oauth",
+    "pyjwt",
+    "streamlit>=1.27.0",
+]
+requires-python = ">=3.8.0"
