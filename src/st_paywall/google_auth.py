@@ -37,39 +37,11 @@ async def get_authorization_url(client: GoogleOAuth2, redirect_url: str) -> str:
     return authorization_url
 
 
-def markdown_button(
-    url: str, text: Optional[str] = None, color="#FD504D", sidebar: bool = True
-):
-    markdown = st.sidebar.markdown if sidebar else st.markdown
-
-    markdown(
-        f"""
-    <a href="{url}" target="_blank">
-        <div style="
-            display: inline-flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            font-weight: 400;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.25rem;
-            margin: 0px;
-            line-height: 1.6;
-            width: auto;
-            user-select: none;
-            background-color: {color};
-            color: rgb(255, 255, 255);
-            border: 1px solid rgb(255, 75, 75);
-            text-decoration: none;
-            ">
-            {text}
-        </div>
-    </a>
-    """,
-        unsafe_allow_html=True,
-    )
-
+def markdown_button(url: str, text: Optional[str] = None, color="#FD504D", sidebar: bool = True):
+    if sidebar:
+        st.sidebar.link_button(label=text, url=url, help=None, type="primary", disabled=False, use_container_width=False)
+    else:
+        st.link_button(label=text, url=url, help=None, type="primary", disabled=False, use_container_width=False)
 
 async def get_access_token(
     client: GoogleOAuth2, redirect_url: str, code: str
